@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     Bitmap bg;
 
     Boolean bRotate = Boolean.TRUE;
-    //TextView t = (TextView)findViewById(R.id.textView);
+   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,24 +100,12 @@ public class MainActivity extends AppCompatActivity {
 
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#000000"));
-       // Bitmap bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
+       
         bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bg);
-        //canvas.drawRect(0, 0, 480, 800, paint);
+        
         RelativeLayout ll = (RelativeLayout) findViewById(R.id.rect);
-        ll.setBackgroundDrawable(new BitmapDrawable(bg));
-        ///stDrawOnCanvas(canvas);
-
-       // checkBT();
-
-      /*  MainActivity.this.runOnUiThread(new Runnable() {
-            public void run() {
-                Log.d("UI thread", "I am the UI thread");
-                stDrawOnCanvas(canvas);
-            }
-        });*/
-
-
+        ll.setBackgroundDrawable(new BitmapDrawable(bg))
 
     }
 
@@ -127,37 +115,16 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(final View v) {
             switch (v.getId()) {
                 case R.id.button1: {
-                    //Bitmap bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
-                    //canvas = new Canvas(bg);
+                    
                     canvas.drawColor(Color.WHITE);
-                                                        /*
-                    /*
-                    Paint paint = new Paint();
-                    paint.setColor(Color.parseColor("#000000"));
-
-
-                    //canvas.drawRect(0, 0, 480, 800, paint);
-                    RelativeLayout ll = (RelativeLayout) findViewById(R.id.rect);
-                    ll.setBackgroundDrawable(new BitmapDrawable(bg));
-                    //stDrawOnCanvas(canvas);
-                    */
+                                                       
                     break;
                 }
 
                 case R.id.button2: {
 
                     bRotate  = ! bRotate;
-                    /*
-                    /*
-                    Paint paint = new Paint();
-                    paint.setColor(Color.parseColor("#000000"));
-
-
-                    //canvas.drawRect(0, 0, 480, 800, paint);
-                    RelativeLayout ll = (RelativeLayout) findViewById(R.id.rect);
-                    ll.setBackgroundDrawable(new BitmapDrawable(bg));
-                    //stDrawOnCanvas(canvas);
-                    */
+                    
                     break;
                 }
             }
@@ -190,46 +157,7 @@ public class MainActivity extends AppCompatActivity {
         Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
 
         showBTDialog();
-        /*
-        if (pairedDevices.size() > 0) {
-            // There are paired devices. Get the name and address of each paired device.
-            for (BluetoothDevice device : pairedDevices) {
-                String deviceName = device.getName();
-
-                if(deviceName.equals("WIDE_HK")) {
-                    mmDevice = device;
-                    Toast.makeText(MainActivity.this, "WIDE_HK FOUND",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-            String deviceHardwareAddress = device.getAddress(); // MAC address
-            t.append("\n  Device: " + device.getName() + ", " + device);
-            //t.setText(deviceName);
-            }
-
-            if(mmDevice == null)
-                Toast.makeText(MainActivity.this, "mmDevice NULL1",
-                        Toast.LENGTH_SHORT).show();
-            try
-            {
-
-                openBT();
-            }
-            catch (IOException ex) {
-                Log.d("NUCLEORADAR", ex.getMessage());
-                Toast.makeText(MainActivity.this, ex.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        }
-        else {
-            Toast.makeText(MainActivity.this, "No device bound",
-                    Toast.LENGTH_SHORT).show();
-        }
-        */
-
-
-    }
+     }
 
 
     private void openBT() throws IOException
@@ -246,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         mmOutputStream = mmSocket.getOutputStream();
         mmInputStream = mmSocket.getInputStream();
 
-  //      showBTDialog();
+  
         beginListenForData();
     }
 
@@ -270,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
 
                 View itemView = view;
                 int position = (int) arg0.getSelectedItemId();
-               // Toast.makeText(getApplicationContext(), " Position:" + position + " arg2:" + arg2 + " arg3:" + itemID, Toast.LENGTH_LONG).show();
                 String text = myListView.getItemAtPosition(arg2).toString().trim();
                 String[] deviceData = text.split("\n");
                 Toast.makeText(getApplicationContext(), deviceData[0], Toast.LENGTH_LONG).show();
@@ -366,19 +293,14 @@ public class MainActivity extends AppCompatActivity {
                                     System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
                                     final String data = new String(encodedBytes, "US-ASCII");
                                     readBufferPosition = 0;
-                                    //final TextView t = (TextView) findViewById(R.id.textView);
-                                    //String tmp = data + "\n"
-                                   // t.append(data);
+
                                     handler.post(new Runnable()
                                     {
                                         public void run() {
-                                            // final TextView t = (TextView) findViewById(R.id.textView);
-                                            //String tmp = data + "\n";
-                                            t.setText(data);
-                                            //data.trim();
+
+                                            t.setText(data);                                        
                                             String[] separated = data.split(":");
 
-                                            //Toast.makeText(MainActivity.this, separated[1],  Toast.LENGTH_SHORT).show();
                                             if ((separated[0].length() != 0)&& (separated[1].length() != 0)) {
 
                                             separated[1].trim();
@@ -396,32 +318,19 @@ public class MainActivity extends AppCompatActivity {
                                              }
                                             final Integer angle = Integer.parseInt(s_angle);
 
-                                            //final Integer value = Integer.parseInt(s_value)/100;
                                             final Integer value = Integer.parseInt(s_value);
 
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        //paint.setColor(Color.parseColor("#6b8728"));
-                                                        //Bitmap bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
-                                                        //Canvas canvas = new Canvas(bg);
+                                                        
                                                         Integer width = canvas.getWidth() / 2;
                                                         Integer height = canvas.getHeight() / 2;
 
-                                                        //canvas.drawLine(width, height, 150, 50, paint);
                                                         if((angle <= 5) || (angle >= 175))
                                                             canvas.drawColor(Color.WHITE);
-                                                            //canvas.drawColor(Color.TRANSPARENT);
-                                                        /*
-                                                        int i;
-                                                        for(i=0; i<=180; i++){
-                                                            stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, value, angle, "#ffffff", canvas);
-                                                        }
-                                                        */
-                                                        //Resources res = getResources();
-                                                        //Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.radar_960_720);
-                                                        float toto = canvas.getWidth();
-                                                        float tutu = toto/2;
+                                                            
+                                                  
                                                         float valuedraw =(value*canvas.getWidth())/5000;
                                                         if(valuedraw >canvas.getWidth()/2 ) {
                                                             valuedraw = (float) canvas.getWidth()/2;
@@ -431,17 +340,7 @@ public class MainActivity extends AppCompatActivity {
                                                         stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, valuedraw, angle-1, "#fe201d", canvas);
                                                         stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, valuedraw, angle, "#ff211e", canvas);
                                                         stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, valuedraw, angle+1, "#fe201d", canvas);
-                                                        //
-                                                        //stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, value, angle-5, "#ffffff", canvas);
-                                                        //stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, value, angle+5, "#ffffff", canvas);
-                                                        //stDrawBeam(canvas.getWidth() / 2, canvas.getHeight() / 2, value, angle, "#ff211e", canvas);
-                                                        /*
-                                                        if (angle >= 5) {
-                                                            //canvas.drawColor(Color.WHITE);
-                                                          //  stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, 40000, angle - 5, "#ffffff", canvas);
-                                                            stDrawBeam(canvas.getWidth() / 2, canvas.getHeight() / 2, value, angle, "#ff211e", canvas);
-                                                        }
-                                                        */
+                                                        
 
 
                                                     }
@@ -451,25 +350,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                                            //stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, value, angle, "ff211e", canvas);
-/*
-                                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        //your UI code goes here
-                                                        Toast.makeText(MainActivity.this, value,  Toast.LENGTH_SHORT).show();
-                                                        //stDrawLineAngle(canvas.getWidth() / 2, canvas.getHeight() / 2, value, angle, "ff211e", canvas);
-                                                    }
-                                                });*/
+                                           
 
                                          }
-/*
-                                            //stDrawLineAngle(  canvas.getWidth()/2,  canvas.getHeight()/2, value, angle, "ff211e", canvas);
-                                            //http://www.color-hex.com/
-                                            //#6b8728 = Green
-                                            //#00ff6d = vert clair
-                                            //#ff211e = rouge
-*/
+
                                         }
                                     });
                                 }
@@ -495,36 +379,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
- //public void stDrawOnCanvas(int lineLength, int angle)
  public void stDrawOnCanvas(Canvas canvas)
  {
      Paint paint = new Paint();
      paint.setColor(Color.parseColor("#6b8728"));
-     //Bitmap bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
-     //Canvas canvas = new Canvas(bg);
+
      int width = canvas.getWidth()/2;
      int height = canvas.getHeight()/2;
      float radius = 240;
-     /*
-
-
- for(double i=0; i<=180; i=i+0.1) {
-     double irad = Math.toRadians(i);
-     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-     //canvas.drawLine(width, height, i, 50, paint);
-     // canvas.drawLine(width, height, (float) (width + Math.cos(height / width)), (float) (height + Math.sin(height / width)), paint);
-     paint.setXfermode(null);
-     // canvas.drawLine(width, height, i, 50, paint);
-     canvas.drawLine(width, height, (float) (width - (radius * Math.cos(irad))), (float) (height - (radius * Math.sin(irad))), paint);
-
-
-     //canvas.drawLine(width,height,150,50, paint);
-
- }*/
+     
      RelativeLayout ll = (RelativeLayout) findViewById(R.id.rect);
-    //41 ll.setBackgroundDrawable(new BitmapDrawable(bg));
-     //stDrawLineAngle(width, height, 500, 75, "ff211e", canvas, paint);
-     //stDrawHalfCircle(width, height, radius, "#6b8728", canvas);
+    
 
 
  }
@@ -532,17 +397,13 @@ public class MainActivity extends AppCompatActivity {
     public void stDrawHalfCircle(int x, int y, float radius, String  color,  Canvas canvas) {
 
         Paint paint = new Paint();
-        //#6b8728 = Green
-        // paint.setColor(Color.parseColor("#6b8728"));
+        
         paint.setColor(Color.parseColor(color));
 
         for (double i = 0; i <= 180; i = i + 0.1) {
             double irad = Math.toRadians(i);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            //canvas.drawLine(width, height, i, 50, paint);
-            // canvas.drawLine(width, height, (float) (width + Math.cos(height / width)), (float) (height + Math.sin(height / width)), paint);
             paint.setXfermode(null);
-            // canvas.drawLine(width, height, i, 50, paint);
             canvas.drawLine(x, y, (float) ( (radius * Math.cos(irad))), (float) ( (radius * Math.sin(irad))), paint);
         }
     }
@@ -557,7 +418,6 @@ public class MainActivity extends AppCompatActivity {
         ll.setBackgroundDrawable(new BitmapDrawable(bg));
 
         Paint paint = new Paint();
-        //canvas.drawLine(x, y, 150, 50, paint);
         paint.setColor( Color.parseColor(color));
 
          angle = 180-angle;
@@ -565,14 +425,6 @@ public class MainActivity extends AppCompatActivity {
 
 
          double irad = Math.toRadians( dang);
-
-
-        //paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        //canvas.drawLine(width, height, i, 50, paint);
-        // canvas.drawLine(width, height, (float) (width + Math.cos(height / width)), (float) (height + Math.sin(height / width)), paint);
-        //paint.setXfermode(null);
-        // canvas.drawLine(width, height, i, 50, paint);
-        //
        canvas.drawLine( (float) (x), (float) (y), (float) (x - (radius * Math.cos(irad))), (float) (y - (radius * Math.sin(irad))), paint);
 
     }
